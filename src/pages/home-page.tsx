@@ -8,7 +8,7 @@ import {
   MapPin,
   Star,
 } from 'lucide-react'
-import { useState } from 'react'
+import { type ReactNode, useEffect, useRef, useState } from 'react'
 
 import coffeeImage from '@/assets/coffee.jpg'
 import blueberryImage from '@/assets/customer-favorites-assets/blueberry-1.png'
@@ -178,6 +178,58 @@ const mapsEmbedUrl =
 
 const mapsLink = 'https://maps.app.goo.gl/xNaCVavJG9gmoB2AA'
 
+type RevealProps = {
+  children: ReactNode
+  className?: string
+  initialVisible?: boolean
+}
+
+function Reveal({
+  children,
+  className = '',
+  initialVisible = false,
+}: RevealProps) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(initialVisible)
+
+  useEffect(() => {
+    const node = ref.current
+
+    if (!node || initialVisible) {
+      if (initialVisible) {
+        const frame = requestAnimationFrame(() => setIsVisible(true))
+        return () => cancelAnimationFrame(frame)
+      }
+
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -10% 0px' },
+    )
+
+    observer.observe(node)
+
+    return () => observer.disconnect()
+  }, [initialVisible])
+
+  return (
+    <div
+      ref={ref}
+      className={['reveal-item', className].filter(Boolean).join(' ')}
+      data-visible={isVisible}
+    >
+      {children}
+    </div>
+  )
+}
+
 export function HomePage() {
   const [heroImageLoaded, setHeroImageLoaded] = useState(false)
   const [giftImageLoaded, setGiftImageLoaded] = useState(false)
@@ -186,7 +238,7 @@ export function HomePage() {
 
   return (
     <AppShell>
-      <section className="container py-10 sm:py-14 lg:py-16">
+      <Reveal initialVisible className="container py-10 sm:py-14 lg:py-16">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-14">
           <div className="order-2 space-y-8 lg:order-1">
             <div className="inline-flex items-center gap-2 rounded-full bg-destructive/10 px-4 py-2 text-sm font-medium text-destructive shadow-sm ring-1 ring-destructive/15">
@@ -284,9 +336,9 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </Reveal>
 
-      <section className="container pb-16 sm:pb-20 lg:pb-24">
+      <Reveal className="container pb-16 sm:pb-20 lg:pb-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Customer Favorites
@@ -338,9 +390,9 @@ export function HomePage() {
             </article>
           ))}
         </div>
-      </section>
+      </Reveal>
 
-      <section className="container pb-16 sm:pb-20 lg:pb-24">
+      <Reveal className="container pb-16 sm:pb-20 lg:pb-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Bundles &amp; Combos
@@ -409,9 +461,9 @@ export function HomePage() {
             </article>
           ))}
         </div>
-      </section>
+      </Reveal>
 
-      <section className="bg-gradient-to-b from-background via-secondary/15 to-background py-16 sm:py-20 lg:py-24">
+      <Reveal className="bg-gradient-to-b from-background via-secondary/15 to-background py-16 sm:py-20 lg:py-24">
         <div className="container">
           <div className="grid items-center gap-10 lg:grid-cols-[0.94fr_1.06fr] lg:gap-14">
             <div className="relative">
@@ -495,9 +547,9 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </Reveal>
 
-      <section className="container py-16 sm:py-20 lg:py-24">
+      <Reveal className="container py-16 sm:py-20 lg:py-24">
         <div className="grid items-center gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
           <div className="max-w-xl space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
@@ -538,9 +590,9 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </Reveal>
 
-      <section className="bg-primary py-20 sm:py-24 lg:py-28">
+      <Reveal className="bg-primary py-20 sm:py-24 lg:py-28">
         <div className="container text-center text-primary-foreground">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Loved Locally
@@ -578,9 +630,9 @@ export function HomePage() {
             <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
-      </section>
+      </Reveal>
 
-      <section className="container py-16 sm:py-20 lg:py-24">
+      <Reveal className="container py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Find Us
@@ -677,7 +729,7 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </Reveal>
     </AppShell>
   )
 }
