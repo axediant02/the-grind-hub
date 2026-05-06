@@ -8,7 +8,13 @@ import {
   MapPin,
   Star,
 } from 'lucide-react'
-import { type ReactNode, useEffect, useRef, useState } from 'react'
+import {
+  type HTMLAttributes,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import coffeeImage from '@/assets/coffee.jpg'
 import blueberryImage from '@/assets/customer-favorites-assets/blueberry-1.png'
@@ -262,12 +268,13 @@ type RevealProps = {
   children: ReactNode
   className?: string
   initialVisible?: boolean
-}
+} & HTMLAttributes<HTMLDivElement>
 
 function Reveal({
   children,
   className = '',
   initialVisible = false,
+  ...props
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(initialVisible)
@@ -304,6 +311,7 @@ function Reveal({
       ref={ref}
       className={['reveal-item', className].filter(Boolean).join(' ')}
       data-visible={isVisible}
+      {...props}
     >
       {children}
     </div>
@@ -324,7 +332,11 @@ export function HomePage() {
 
   return (
     <AppShell>
-      <Reveal initialVisible className="container py-10 sm:py-14 lg:py-16">
+      <Reveal
+        id="home"
+        initialVisible
+        className="container py-10 sm:py-14 lg:py-16"
+      >
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-14">
           <div className="order-2 space-y-8 lg:order-1">
             <div className="inline-flex items-center gap-2 rounded-full bg-destructive/10 px-4 py-2 text-sm font-medium text-destructive shadow-sm ring-1 ring-destructive/15">
@@ -424,7 +436,10 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal className="bg-[#37231b] py-16 sm:py-20 lg:py-24">
+      <Reveal
+        id="menu"
+        className="bg-[#37231b] py-16 sm:py-20 lg:py-24"
+      >
         <div className="container text-center text-primary-foreground">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Menu
@@ -564,7 +579,10 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal className="container pb-16 sm:pb-20 lg:pb-24">
+      <Reveal
+        id="best-sellers"
+        className="container pb-16 sm:pb-20 lg:pb-24"
+      >
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Customer Favorites
@@ -618,7 +636,7 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal className="container pb-16 sm:pb-20 lg:pb-24">
+      <Reveal id="bundles" className="container pb-16 sm:pb-20 lg:pb-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Bundles &amp; Combos
@@ -689,7 +707,10 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal className="bg-gradient-to-b from-background via-secondary/15 to-background py-16 sm:py-20 lg:py-24">
+      <Reveal
+        id="gift-boxes"
+        className="bg-gradient-to-b from-background via-secondary/15 to-background py-16 sm:py-20 lg:py-24"
+      >
         <div className="container">
           <div className="grid items-center gap-10 lg:grid-cols-[0.94fr_1.06fr] lg:gap-14">
             <div className="relative">
@@ -775,7 +796,7 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal className="container py-16 sm:py-20 lg:py-24">
+      <Reveal id="our-story" className="container py-16 sm:py-20 lg:py-24">
         <div className="grid items-center gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
           <div className="max-w-xl space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
@@ -818,7 +839,10 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal className="bg-primary py-20 sm:py-24 lg:py-28">
+      <Reveal
+        id="testimonials"
+        className="bg-primary py-20 sm:py-24 lg:py-28"
+      >
         <div className="container text-center text-primary-foreground">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Loved Locally
@@ -858,7 +882,7 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal className="container py-16 sm:py-20 lg:py-24">
+      <Reveal id="visit-us" className="container py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Find Us

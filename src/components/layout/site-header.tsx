@@ -1,6 +1,14 @@
+import { ArrowRight } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 
-const navItems = ['Menu', 'Best Sellers', 'Gift Boxes', 'Bundles', 'Visit Us']
+const navItems = [
+  { label: 'Menu', href: '#menu' },
+  { label: 'Best Sellers', href: '#best-sellers' },
+  { label: 'Gift Boxes', href: '#gift-boxes' },
+  { label: 'Bundles', href: '#bundles' },
+  { label: 'Visit Us', href: '#visit-us' },
+]
 
 export function SiteHeader() {
   return (
@@ -25,18 +33,21 @@ export function SiteHeader() {
         >
           {navItems.map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               className="transition-colors hover:text-foreground"
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </nav>
 
         <div className="ml-auto">
-          <Button className="rounded-full px-6" size="sm">
-            Order Now
+          <Button asChild className="rounded-full px-6" size="sm">
+            <a href="#menu">
+              Order Now
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </Button>
         </div>
       </div>
