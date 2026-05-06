@@ -173,6 +173,86 @@ Enjoy Nespresso Crema.`,
   },
 ]
 
+const menuCategories = [
+  {
+    id: 'hot-drinks',
+    label: 'Hot Drinks',
+    eyebrow: 'Warm and classic',
+    title: 'Comfort in a cup.',
+    description:
+      'Freshly brewed coffees and barista favorites for slow mornings and late work sessions.',
+    items: [
+      { name: 'Drip Coffee', price: '60' },
+      { name: 'Americano', price: '100' },
+      { name: 'Latte', price: '120' },
+      { name: 'Cappuccino', price: '135' },
+      { name: 'Nespresso Creations', price: '135' },
+    ],
+  },
+  {
+    id: 'cold-drinks',
+    label: 'Cold Drinks',
+    eyebrow: 'Iced and blended',
+    title: 'Chill drinks that still taste rich.',
+    description:
+      'Iced coffees, frappes, and espresso-based coolers for warm afternoons and dessert pairings.',
+    items: [
+      { name: 'Americano', price: '120' },
+      { name: 'Nespresso', price: '140 / 165' },
+      { name: 'Latte', price: '130 / 155' },
+      { name: 'Spanish Latte', price: '135 / 160' },
+      { name: 'Cappuccino', price: '135 / 160' },
+    ],
+  },
+  {
+    id: 'non-coffee',
+    label: 'Non-Coffee',
+    eyebrow: 'Sweet and smooth',
+    title: 'For matcha, chocolate, and tea lovers.',
+    description:
+      'A softer menu lane with creamy drinks and comforting tea options for everyone.',
+    items: [
+      { name: 'Matcha Latte', price: '125 / 160' },
+      { name: 'Chocolate', price: '120 / 155' },
+      { name: 'White Chocolate', price: '120 / 155' },
+      { name: 'Tea', price: '75' },
+      { name: 'Shared Serenity', price: '150' },
+    ],
+  },
+  {
+    id: 'bites',
+    label: 'Bites & Pastries',
+    eyebrow: 'Savory and sweet',
+    title: 'Little plates that go with coffee.',
+    description:
+      'Pastries, cakes, sandwiches, and snacks for brunch, mid-day breaks, or sharing at the table.',
+    items: [
+      { name: 'Pasta Alfredo / Chicken Pesto', price: '150' },
+      { name: 'Chocolate Cake', price: '140' },
+      { name: 'S\'mores', price: '50' },
+      { name: 'Brownie', price: '35' },
+      { name: 'Cheesecake', price: '120' },
+      { name: 'Tuna Sandwich', price: '80' },
+      { name: 'Cheese Pimiento', price: '80' },
+      { name: 'Ham and Cheese', price: '100' },
+    ],
+  },
+  {
+    id: 'waffles',
+    label: 'Waffles',
+    eyebrow: 'Fresh off the iron',
+    title: 'Simple, loaded, or extra indulgent.',
+    description:
+      'A small menu built for breakfast, merienda, or dessert with customizable toppings.',
+    items: [
+      { name: 'Waffle Plain', price: '65' },
+      { name: 'Waffle with Nutella', price: '85' },
+      { name: 'Waffle with Biscoff', price: '85' },
+      { name: 'Waffle with Peanut Butter', price: '80' },
+    ],
+  },
+]
+
 const mapsEmbedUrl =
   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.9525480213315!2d123.59325167585806!3d10.345679466989518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a96dda5c1d3483%3A0x470345e58232a663!2sThe%20Grind%20Hub!5e0!3m2!1sen!2sph!4v1778086718080!5m2!1sen!2sph'
 
@@ -235,6 +315,12 @@ export function HomePage() {
   const [giftImageLoaded, setGiftImageLoaded] = useState(false)
   const [storyImageLoaded, setStoryImageLoaded] = useState(false)
   const [mapLoaded, setMapLoaded] = useState(false)
+  const [selectedMenuCategory, setSelectedMenuCategory] = useState(
+    menuCategories[0].id,
+  )
+  const activeMenuCategory =
+    menuCategories.find(({ id }) => id === selectedMenuCategory) ??
+    menuCategories[0]
 
   return (
     <AppShell>
@@ -333,6 +419,146 @@ export function HomePage() {
               </div>
 
               <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-t from-background/15 via-transparent to-transparent" />
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal className="bg-[#37231b] py-16 sm:py-20 lg:py-24">
+        <div className="container text-center text-primary-foreground">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
+            Menu
+          </p>
+          <h2 className="mx-auto mt-4 max-w-2xl font-serif text-4xl font-semibold leading-[0.95] tracking-tight sm:text-5xl lg:text-[4.5rem]">
+            Choose what you&apos;re craving today.
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-primary-foreground/75 sm:text-lg">
+            Tap a category to explore drinks and bites. Prices can be updated
+            anytime without changing the layout.
+          </p>
+
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {menuCategories.map((category) => {
+              const isActive = category.id === selectedMenuCategory
+
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  onClick={() => setSelectedMenuCategory(category.id)}
+                  className={[
+                    'rounded-full border px-5 py-3 text-sm font-semibold transition-all duration-300',
+                    isActive
+                      ? 'border-accent bg-accent text-primary shadow-lg shadow-black/20'
+                      : 'border-white/15 bg-white/5 text-primary-foreground/75 hover:border-white/25 hover:bg-white/10 hover:text-primary-foreground',
+                  ].join(' ')}
+                >
+                  {category.label}
+                </button>
+              )
+            })}
+          </div>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+            <article className="rounded-[2.5rem] border border-white/10 bg-white/5 p-8 text-left shadow-[0_20px_60px_-36px_rgba(0,0,0,0.65)] backdrop-blur-sm sm:p-10">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">
+                {activeMenuCategory.eyebrow}
+              </p>
+              <h3 className="mt-4 font-serif text-3xl font-semibold leading-tight text-primary-foreground sm:text-4xl">
+                {activeMenuCategory.title}
+              </h3>
+              <p className="mt-4 text-base leading-7 text-primary-foreground/75">
+                {activeMenuCategory.description}
+              </p>
+
+              <div className="mt-8 space-y-3">
+                {activeMenuCategory.items.map((item) => (
+                  <div
+                    key={item.name}
+                    className="flex items-baseline justify-between gap-4 border-b border-white/10 pb-3"
+                  >
+                    <p className="text-lg font-medium text-primary-foreground">
+                      {item.name}
+                    </p>
+                    <div className="flex items-baseline gap-2 text-primary-foreground">
+                      <span className="text-sm text-primary-foreground/60">
+                        ₱
+                      </span>
+                      <span className="font-serif text-2xl leading-none">
+                        {item.price}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button className="rounded-full bg-background px-6 text-primary hover:bg-background/90">
+                  Order This Category
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+                <Button
+                  className="rounded-full border-2 border-white/20 bg-transparent px-6 text-primary-foreground hover:bg-white/10"
+                  variant="outline"
+                >
+                  Ask for Availability
+                </Button>
+              </div>
+            </article>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {menuCategories.map((category) => {
+                const isActive = category.id === selectedMenuCategory
+
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    onClick={() => setSelectedMenuCategory(category.id)}
+                    className={[
+                      'group rounded-[2rem] border p-5 text-left shadow-[0_16px_50px_-34px_rgba(0,0,0,0.55)] transition-all duration-300',
+                      isActive
+                        ? 'border-accent bg-primary/95 text-primary-foreground'
+                        : 'border-white/10 bg-white/5 text-primary-foreground/85 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10',
+                    ].join(' ')}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent/90">
+                          {category.eyebrow}
+                        </p>
+                        <h4 className="mt-2 font-serif text-2xl font-semibold tracking-tight">
+                          {category.label}
+                        </h4>
+                      </div>
+                      <div
+                        className={[
+                          'flex h-11 w-11 items-center justify-center rounded-full border',
+                          isActive
+                            ? 'border-accent bg-accent text-primary'
+                            : 'border-white/10 bg-white/5 text-accent',
+                        ].join(' ')}
+                      >
+                        <Heart className="h-5 w-5" />
+                      </div>
+                    </div>
+
+                    <div className="mt-5 space-y-2">
+                      {category.items.slice(0, 3).map((item) => (
+                        <div
+                          key={item.name}
+                          className="flex items-baseline justify-between gap-4 text-sm"
+                        >
+                          <span>{item.name}</span>
+                          <span className="font-semibold text-accent">
+                            {item.price}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </button>
+                )
+              })}
             </div>
           </div>
         </div>
