@@ -4,13 +4,16 @@ import {
   Cookie,
   Gift,
   Heart,
+  Star,
 } from 'lucide-react'
 
 import coffeeImage from '@/assets/coffee.jpg'
 import blueberryImage from '@/assets/customer-favorites-assets/blueberry-1.png'
 import brownieImage from '@/assets/customer-favorites-assets/brownies-1.png'
 import chocoImage from '@/assets/customer-favorites-assets/choco-1.png'
+import customerFlexImage from '@/assets/customer-favorites-assets/customer-flex.jpg'
 import ghCoffeeImage from '@/assets/customer-favorites-assets/gh-coffee.png'
+import giftBoxImage from '@/assets/customer-favorites-assets/gift.jpg'
 import pastryImage from '@/assets/customer-favorites-assets/pastry-1.png'
 import waffleImage from '@/assets/customer-favorites-assets/waffle.png'
 import { AppShell } from '@/components/layout/app-shell'
@@ -114,6 +117,56 @@ const bundles = [
     title: 'Celebration Box',
     description: 'Dessert tub + ribbon packaging + optional flowers.',
     action: 'Customize Gift',
+  },
+]
+
+const giftBoxes = [
+  {
+    title: 'Coffee & Flower Box',
+    description:
+      'Coffee cup, fresh flowers, ribbon and sweets in one ready-to-give box.',
+  },
+  {
+    title: 'Dessert Tub Gift Set',
+    description:
+      'A creamy cheesecake or chocolate dessert tub with gift packaging.',
+  },
+  {
+    title: 'Valentine Coffee Box',
+    description:
+      'A themed drink-and-dessert set for romantic surprises.',
+  },
+  {
+    title: 'Just for You Tray',
+    description:
+      'A small dessert tray with ribbon for thoughtful, last-minute gifts.',
+  },
+  {
+    title: 'Office Dessert Box',
+    description:
+      'Cookies, brownies and bottled drinks for groups and teams.',
+  },
+]
+
+const testimonials = [
+  {
+    quote: `Spanish latte two-shot is delicious.
+And here we also have Nespresso capsule coffee.
+You can enjoy a variety of exotic coffee flavors.
+Enjoy Nespresso Crema.`,
+    author: 'Daniel Lee SB',
+  },
+  {
+    quote: 'A perfect place to relax and enjoy dessert and coffee',
+    author: 'Freych Orongan',
+  },
+  {
+    quote: 'A good place to chill and play boardgames',
+    author: 'Louilla Delos Reyes',
+  },
+  {
+    quote: 'It was great. Super yummy!!!😋😍',
+    author: 'Sheryl Panugaling',
   },
 ]
 
@@ -335,6 +388,161 @@ export function HomePage() {
               </Button>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-gradient-to-b from-background via-secondary/15 to-background py-16 sm:py-20 lg:py-24">
+        <div className="container">
+          <div className="grid items-center gap-10 lg:grid-cols-[0.94fr_1.06fr] lg:gap-14">
+            <div className="relative">
+              <div className="overflow-hidden rounded-[2.5rem] bg-[#f7c9d3]/70 p-6 shadow-[0_22px_70px_-35px_hsl(var(--primary)/0.4)] ring-1 ring-border/60">
+                <div className="overflow-hidden rounded-[2rem] bg-[#f9d9df] p-4">
+                  <img
+                    alt="Gift-ready dessert box"
+                    className="h-[420px] w-full object-contain object-center sm:h-[520px]"
+                    src={giftBoxImage}
+                  />
+                </div>
+              </div>
+
+              <div className="absolute -bottom-8 right-6 max-w-[220px] rounded-[1.5rem] bg-destructive px-5 py-5 text-destructive-foreground shadow-xl shadow-destructive/20">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-destructive-foreground/90">
+                  Limited seasonal designs
+                </p>
+                <p className="mt-3 text-sm leading-6 text-destructive-foreground/90">
+                  Message us early to reserve.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-destructive">
+                  Send Something Sweet
+                </p>
+                <h2 className="max-w-xl font-serif text-4xl font-semibold leading-[1] tracking-tight text-primary sm:text-5xl">
+                  Gift-ready boxes, made with love.
+                </h2>
+                <p className="max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
+                  Make someone&apos;s day with ribboned trays, coffee-and-flower
+                  sets and seasonal sweets made for birthdays, anniversaries,
+                  Valentine&apos;s Day, thank-you gifts and small celebrations.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {giftBoxes.map((box) => (
+                  <article
+                    key={box.title}
+                    className="flex items-start gap-4 rounded-[1.5rem] border border-border/60 bg-card px-5 py-4 shadow-[0_12px_40px_-28px_hsl(var(--primary)/0.35)]"
+                  >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-destructive/10 text-destructive">
+                      <Gift className="h-5 w-5" />
+                    </div>
+
+                    <div className="space-y-1">
+                      <h3 className="font-serif text-xl font-semibold tracking-tight text-primary">
+                        {box.title}
+                      </h3>
+                      <p className="text-sm leading-6 text-muted-foreground">
+                        {box.description}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+                <Button className="rounded-full px-6" size="lg">
+                  <Gift className="h-4 w-4" />
+                  Reserve a Gift Box
+                </Button>
+                <Button
+                  className="rounded-full border-2 border-primary/80 bg-background/70 px-6 text-primary hover:bg-primary hover:text-primary-foreground"
+                  size="lg"
+                  variant="outline"
+                >
+                  Message for Custom Orders
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container py-16 sm:py-20 lg:py-24">
+        <div className="grid items-center gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
+          <div className="max-w-xl space-y-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
+              Our Story
+            </p>
+            <h2 className="font-serif text-4xl font-semibold leading-[0.95] tracking-tight text-primary sm:text-5xl lg:text-[4.4rem]">
+              Made for your
+              <span className="text-accent"> everyday grind.</span>
+            </h2>
+            <p className="text-base leading-8 text-muted-foreground sm:text-lg">
+              The Grind is a cozy local caf&eacute; serving coffee, breads,
+              pastries, desserts, waffles, pasta and gift-ready treats. Whether
+              you&apos;re starting your morning, taking an afternoon break,
+              studying, working or surprising someone special, we make every
+              cup and bite feel comforting, personal, and worth coming back
+              for.
+            </p>
+            <Button className="rounded-full px-7" size="lg">
+              Visit Our Caf&eacute;
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+
+          <div className="relative">
+            <div className="overflow-hidden rounded-[2.25rem] shadow-[0_24px_70px_-32px_hsl(var(--primary)/0.4)] ring-1 ring-border/60">
+              <img
+                alt="The Grind Hub cafe interior with guests seated and warm lighting"
+                className="h-[420px] w-full object-cover object-center sm:h-[520px] lg:h-[560px]"
+                src={customerFlexImage}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-primary py-20 sm:py-24 lg:py-28">
+        <div className="container text-center text-primary-foreground">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
+            Loved Locally
+          </p>
+          <h2 className="mx-auto mt-4 max-w-2xl font-serif text-4xl font-semibold leading-[0.95] tracking-tight sm:text-5xl lg:text-[4.5rem]">
+            Loved by coffee
+            <br />
+            &amp; dessert people.
+          </h2>
+
+          <div className="mt-14 grid gap-5 text-left md:grid-cols-2 xl:grid-cols-4">
+            {testimonials.map((testimonial) => (
+              <article
+                key={testimonial.author}
+                className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.55)] backdrop-blur-sm"
+              >
+                <div className="flex gap-1 text-accent">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Star key={index} className="h-4 w-4 fill-current" />
+                  ))}
+                </div>
+
+                <p className="mt-5 font-serif text-xl leading-8 text-primary-foreground">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </p>
+                <p className="mt-5 text-sm text-primary-foreground/70">
+                  &mdash; {testimonial.author}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <Button className="mt-14 rounded-full bg-background px-7 text-primary hover:bg-background/90">
+            See more on Instagram
+            <ArrowRight className="h-4 w-4" />
+          </Button>
         </div>
       </section>
     </AppShell>
