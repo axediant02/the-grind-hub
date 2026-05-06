@@ -1,29 +1,44 @@
-import { LayoutTemplate, Sparkles } from 'lucide-react'
-
 import { Button } from '@/components/ui/button'
+
+const navItems = ['Menu', 'Best Sellers', 'Gift Boxes', 'Bundles', 'Visit Us']
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-20 border-b border-border/80 bg-background/80 backdrop-blur">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-sm">
-            <LayoutTemplate className="h-5 w-5" />
-          </div>
-          <div>
-            <p className="text-sm font-semibold tracking-tight">
-              Frontend Starter
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+      <div className="container flex h-20 items-center gap-6">
+        <a href="/" className="flex items-center gap-3">
+          <img
+            alt="The Grind Hub"
+            className="h-11 w-11 rounded-full object-cover shadow-sm ring-1 ring-border/60"
+            src="/logo.png"
+          />
+          <div className="leading-none">
+            <p className="font-serif text-xl font-semibold tracking-tight">
+              The Grind Hub
             </p>
-            <p className="text-xs text-muted-foreground">
-              React, Vite, Tailwind, shadcn/ui
-            </p>
           </div>
-        </div>
+        </a>
 
-        <Button variant="secondary" size="sm">
-          <Sparkles className="h-4 w-4" />
-          Start fast
-        </Button>
+        <nav
+          aria-label="Primary"
+          className="hidden flex-1 items-center justify-center gap-8 text-sm font-medium text-muted-foreground md:flex"
+        >
+          {navItems.map((item) => (
+            <a
+              key={item}
+              href="#"
+              className="transition-colors hover:text-foreground"
+            >
+              {item}
+            </a>
+          ))}
+        </nav>
+
+        <div className="ml-auto">
+          <Button className="rounded-full px-6" size="sm">
+            Order Now
+          </Button>
+        </div>
       </div>
     </header>
   )
