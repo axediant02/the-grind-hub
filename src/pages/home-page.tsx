@@ -1,11 +1,14 @@
 import {
   ArrowRight,
+  Clock3,
   Coffee,
   Cookie,
   Gift,
   Heart,
+  MapPin,
   Star,
 } from 'lucide-react'
+import { useState } from 'react'
 
 import coffeeImage from '@/assets/coffee.jpg'
 import blueberryImage from '@/assets/customer-favorites-assets/blueberry-1.png'
@@ -170,7 +173,17 @@ Enjoy Nespresso Crema.`,
   },
 ]
 
+const mapsEmbedUrl =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.9525480213315!2d123.59325167585806!3d10.345679466989518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a96dda5c1d3483%3A0x470345e58232a663!2sThe%20Grind%20Hub!5e0!3m2!1sen!2sph!4v1778086718080!5m2!1sen!2sph'
+
+const mapsLink = 'https://maps.app.goo.gl/xNaCVavJG9gmoB2AA'
+
 export function HomePage() {
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false)
+  const [giftImageLoaded, setGiftImageLoaded] = useState(false)
+  const [storyImageLoaded, setStoryImageLoaded] = useState(false)
+  const [mapLoaded, setMapLoaded] = useState(false)
+
   return (
     <AppShell>
       <section className="container py-10 sm:py-14 lg:py-16">
@@ -241,9 +254,16 @@ export function HomePage() {
             </div>
 
             <div className="relative overflow-hidden rounded-[2.5rem] bg-card p-3 shadow-[0_24px_80px_-28px_hsl(var(--primary)/0.45)] ring-1 ring-border/60">
+              {!heroImageLoaded ? (
+                <div className="absolute inset-3 animate-pulse rounded-[2rem] bg-muted/70" />
+              ) : null}
               <img
                 alt="Coffee and baked goods from The Grind Hub"
-                className="h-[540px] w-full rounded-[2rem] object-cover object-center sm:h-[620px] lg:h-[720px]"
+                className={[
+                  'h-[540px] w-full rounded-[2rem] object-cover object-center transition-opacity duration-500 sm:h-[620px] lg:h-[720px]',
+                  heroImageLoaded ? 'opacity-100' : 'opacity-0',
+                ].join(' ')}
+                onLoad={() => setHeroImageLoaded(true)}
                 src={coffeeImage}
               />
 
@@ -396,10 +416,17 @@ export function HomePage() {
           <div className="grid items-center gap-10 lg:grid-cols-[0.94fr_1.06fr] lg:gap-14">
             <div className="relative">
               <div className="overflow-hidden rounded-[2.5rem] bg-[#f7c9d3]/70 p-6 shadow-[0_22px_70px_-35px_hsl(var(--primary)/0.4)] ring-1 ring-border/60">
-                <div className="overflow-hidden rounded-[2rem] bg-[#f9d9df] p-4">
+                <div className="relative overflow-hidden rounded-[2rem] bg-[#f9d9df] p-4">
+                  {!giftImageLoaded ? (
+                    <div className="absolute inset-4 animate-pulse rounded-[1.5rem] bg-background/70" />
+                  ) : null}
                   <img
                     alt="Gift-ready dessert box"
-                    className="h-[420px] w-full object-contain object-center sm:h-[520px]"
+                    className={[
+                      'h-[420px] w-full object-contain object-center transition-opacity duration-500 sm:h-[520px]',
+                      giftImageLoaded ? 'opacity-100' : 'opacity-0',
+                    ].join(' ')}
+                    onLoad={() => setGiftImageLoaded(true)}
                     src={giftBoxImage}
                   />
                 </div>
@@ -495,10 +522,17 @@ export function HomePage() {
           </div>
 
           <div className="relative">
-            <div className="overflow-hidden rounded-[2.25rem] shadow-[0_24px_70px_-32px_hsl(var(--primary)/0.4)] ring-1 ring-border/60">
+            <div className="relative overflow-hidden rounded-[2.25rem] shadow-[0_24px_70px_-32px_hsl(var(--primary)/0.4)] ring-1 ring-border/60">
+              {!storyImageLoaded ? (
+                <div className="absolute inset-0 animate-pulse rounded-[2.25rem] bg-muted/70" />
+              ) : null}
               <img
                 alt="The Grind Hub cafe interior with guests seated and warm lighting"
-                className="h-[420px] w-full object-cover object-center sm:h-[520px] lg:h-[560px]"
+                className={[
+                  'h-[420px] w-full object-cover object-center transition-opacity duration-500 sm:h-[520px] lg:h-[560px]',
+                  storyImageLoaded ? 'opacity-100' : 'opacity-0',
+                ].join(' ')}
+                onLoad={() => setStoryImageLoaded(true)}
                 src={customerFlexImage}
               />
             </div>
@@ -543,6 +577,105 @@ export function HomePage() {
             See more on Instagram
             <ArrowRight className="h-4 w-4" />
           </Button>
+        </div>
+      </section>
+
+      <section className="container py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
+            Find Us
+          </p>
+          <h2 className="font-serif text-4xl font-semibold leading-tight tracking-tight text-primary sm:text-5xl">
+            Visit The Grind
+          </h2>
+          <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
+            Drop by for a coffee, swing through for pickup, or message us to
+            reserve a gift box.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-border/60 bg-card shadow-[0_24px_80px_-40px_hsl(var(--primary)/0.38)]">
+            {!mapLoaded ? (
+              <div className="absolute inset-0 z-10 animate-pulse rounded-[2.5rem] bg-muted/70" />
+            ) : null}
+            <iframe
+              allowFullScreen
+              className={[
+                'h-[420px] w-full sm:h-[520px] lg:h-full lg:min-h-[640px] transition-opacity duration-500',
+                mapLoaded ? 'opacity-100' : 'opacity-0',
+              ].join(' ')}
+              onLoad={() => setMapLoaded(true)}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              src={mapsEmbedUrl}
+              title="The Grind Hub location on Google Maps"
+            />
+          </div>
+
+          <div className="rounded-[2.5rem] bg-primary p-8 text-primary-foreground shadow-[0_24px_80px_-40px_hsl(var(--primary)/0.5)] sm:p-10">
+            <div className="space-y-6">
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-background/10 text-accent">
+                    <MapPin className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.22em] text-primary-foreground/60">
+                      Address
+                    </p>
+                    <p className="mt-1 text-base font-semibold leading-7">
+                      The Grind Hub
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-background/10 text-accent">
+                    <Clock3 className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.22em] text-primary-foreground/60">
+                      Open daily
+                    </p>
+                    <p className="mt-1 text-base font-semibold leading-7">
+                      7:00 AM - 10:00 PM
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-2">
+                <Button
+                  asChild
+                  className="w-full rounded-full bg-background px-6 text-primary hover:bg-background/90"
+                  size="lg"
+                >
+                  <a href={mapsLink} rel="noreferrer" target="_blank">
+                    Get Directions
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </Button>
+                <Button
+                  className="w-full rounded-full bg-destructive px-6 text-destructive-foreground hover:bg-destructive/90"
+                  size="lg"
+                >
+                  Order for Pickup
+                </Button>
+                <Button
+                  className="w-full rounded-full border-2 border-background/30 bg-transparent px-6 text-primary-foreground hover:bg-background/10 hover:text-primary-foreground"
+                  size="lg"
+                  variant="outline"
+                >
+                  Message Us
+                </Button>
+              </div>
+
+              <p className="pt-2 text-sm leading-6 text-primary-foreground/70">
+                For gift boxes and bulk orders, please message us in advance.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </AppShell>
