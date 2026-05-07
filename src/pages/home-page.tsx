@@ -17,7 +17,6 @@ import {
   useState,
 } from 'react'
 
-import coffeeImage from '@/assets/coffee.webp'
 import blueberryImage from '@/assets/customer-favorites-assets/blueberry-1.webp'
 import brownieImage from '@/assets/customer-favorites-assets/brownies-1.webp'
 import chocoImage from '@/assets/customer-favorites-assets/choco-1.webp'
@@ -28,6 +27,24 @@ import pastryImage from '@/assets/customer-favorites-assets/pastry-1.webp'
 import waffleImage from '@/assets/customer-favorites-assets/waffle.webp'
 import { AppShell } from '@/components/layout/app-shell'
 import { Button } from '@/components/ui/button'
+
+const heroCoffeeFallback = '/images/grind-hub-hero-coffee-768.webp'
+
+const heroCoffeeAvifSrcSet = [
+  '/images/grind-hub-hero-coffee-480.avif 480w',
+  '/images/grind-hub-hero-coffee-768.avif 768w',
+  '/images/grind-hub-hero-coffee-960.avif 960w',
+  '/images/grind-hub-hero-coffee-1200.avif 1200w',
+].join(', ')
+
+const heroCoffeeWebpSrcSet = [
+  '/images/grind-hub-hero-coffee-480.webp 480w',
+  '/images/grind-hub-hero-coffee-768.webp 768w',
+  '/images/grind-hub-hero-coffee-960.webp 960w',
+  '/images/grind-hub-hero-coffee-1200.webp 1200w',
+].join(', ')
+
+const heroCoffeeSizes = '(min-width: 1024px) 48vw, 100vw'
 
 const featurePills = [
   {
@@ -431,15 +448,34 @@ export function HomePage() {
               {!heroImageLoaded ? (
                 <div className="absolute inset-3 animate-pulse rounded-[2rem] bg-muted/70" />
               ) : null}
-              <img
-                alt="Coffee, pastries, desserts, and board game tambay nights at The Grind Hub cafe in Barangay Bato, Toledo City"
-                className={[
-                  'h-[540px] w-full rounded-[2rem] object-cover object-center transition-opacity duration-500 sm:h-[620px] lg:h-[720px]',
-                  heroImageLoaded ? 'opacity-100' : 'opacity-0',
-                ].join(' ')}
-                onLoad={() => setHeroImageLoaded(true)}
-                src={coffeeImage}
-              />
+              <picture>
+                <source
+                  sizes={heroCoffeeSizes}
+                  srcSet={heroCoffeeAvifSrcSet}
+                  type="image/avif"
+                />
+                <source
+                  sizes={heroCoffeeSizes}
+                  srcSet={heroCoffeeWebpSrcSet}
+                  type="image/webp"
+                />
+                <img
+                  alt="Coffee, pastries, desserts, and board game tambay nights at The Grind Hub cafe in Barangay Bato, Toledo City"
+                  className={[
+                    'h-[540px] w-full rounded-[2rem] object-cover object-center transition-opacity duration-500 sm:h-[620px] lg:h-[720px]',
+                    heroImageLoaded ? 'opacity-100' : 'opacity-0',
+                  ].join(' ')}
+                  decoding="async"
+                  fetchPriority="high"
+                  height="1935"
+                  loading="eager"
+                  onLoad={() => setHeroImageLoaded(true)}
+                  sizes={heroCoffeeSizes}
+                  src={heroCoffeeFallback}
+                  srcSet={heroCoffeeWebpSrcSet}
+                  width="1200"
+                />
+              </picture>
 
               <div className="absolute left-8 top-8 rounded-full bg-card/95 px-4 py-2 text-sm text-foreground shadow-md ring-1 ring-border/60 backdrop-blur">
                 Iced Spanish Latte

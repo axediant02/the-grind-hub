@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/grind-hub-hero-coffee-768.avif"
+      imagesrcset="/images/grind-hub-hero-coffee-480.avif 480w, /images/grind-hub-hero-coffee-768.avif 768w, /images/grind-hub-hero-coffee-960.avif 960w, /images/grind-hub-hero-coffee-1200.avif 1200w"
+      imagesizes="(min-width: 1024px) 48vw, 100vw"
+      type="image/avif"
+      fetchpriority="high"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
@@ -93,7 +102,95 @@
     <title>The Grind Hub | Cafe in Barangay Bato, Toledo City</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <header>
+        <a href="/">The Grind Hub</a>
+        <nav aria-label="Primary">
+          <a href="#menu">Menu</a>
+          <a href="#best-sellers">Best Sellers</a>
+          <a href="#gift-boxes">Gift Boxes</a>
+          <a href="#bundles">Bundles</a>
+          <a href="#our-story">Our Story</a>
+          <a href="#testimonials">Reviews</a>
+          <a href="#visit-us">Visit Us</a>
+        </nav>
+      </header>
+      <main>
+        <section id="home">
+          <h1>The Grind Hub | Cafe in Barangay Bato, Toledo City</h1>
+          <p>
+            The Grind Hub is a cozy cafe, coffee shop, board game spot, and
+            nighttime tambayan in Barangay Bato, Toledo City.
+          </p>
+          <p>
+            Visit us for coffee, iced drinks, pastries, waffles, desserts,
+            pasta, gift boxes, and relaxed tambay nights with friends.
+          </p>
+          <p>
+            <a href="#menu">View our cafe menu</a>
+            <a href="#visit-us">Get directions to The Grind Hub</a>
+          </p>
+        </section>
+        <section id="menu">
+          <h2>Coffee, pastries, and cafe favorites in Toledo City</h2>
+          <p>
+            Explore hot coffee, iced coffee, non-coffee drinks, waffles, pasta,
+            pastries, brownies, cheesecake, and desserts in Barangay Bato.
+          </p>
+          <a href="#best-sellers">See customer favorites</a>
+        </section>
+        <section id="best-sellers">
+          <h2>Best-selling drinks and desserts in Barangay Bato</h2>
+          <p>
+            Local favorites include Spanish latte, croissants, brownies,
+            cheesecake tubs, waffles, and chocolate cakes.
+          </p>
+          <a href="#bundles">See cafe bundles</a>
+        </section>
+        <section id="gift-boxes">
+          <h2>Gift-ready boxes in Toledo City</h2>
+          <p>
+            Reserve coffee-and-flower boxes, dessert tubs, celebration boxes,
+            and custom gifts for pickup in Toledo City.
+          </p>
+          <a href="#visit-us">Reserve a gift box</a>
+        </section>
+        <section id="bundles">
+          <h2>Cafe bundles for pickup, study nights, and tambay</h2>
+          <p>
+            Choose coffee sets, dessert boxes, study buddy sets, and group
+            treats for board game nights or casual tambay.
+          </p>
+          <a href="#our-story">Learn about The Grind Hub</a>
+        </section>
+        <section id="our-story">
+          <h2>A cozy cafe and tambay spot in Bato</h2>
+          <p>
+            The Grind Hub is made for coffee breaks, study sessions, night
+            hangouts, board games, and small celebrations in Toledo City.
+          </p>
+          <a href="#testimonials">Read local reviews</a>
+        </section>
+        <section id="testimonials">
+          <h2>Loved by Bato and Toledo City tambay people</h2>
+          <p>
+            Guests visit The Grind Hub to relax, enjoy coffee and dessert, chill
+            with friends, and play board games.
+          </p>
+          <a href="#visit-us">Plan your visit</a>
+        </section>
+        <section id="visit-us">
+          <h2>Visit The Grind Hub in Barangay Bato, Toledo City</h2>
+          <p>
+            Open daily from 7:00 AM to 10:00 PM for coffee, dessert, board
+            games, gift boxes, pickup orders, and night tambay.
+          </p>
+          <a href="https://maps.app.goo.gl/xNaCVavJG9gmoB2AA">
+            Get directions on Google Maps
+          </a>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
