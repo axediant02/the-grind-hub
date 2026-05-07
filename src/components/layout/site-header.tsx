@@ -16,13 +16,16 @@ export function SiteHeader() {
       <div className="container flex h-20 items-center gap-6">
         <a href="/" className="flex items-center gap-3">
           <img
-            alt="The Grind Hub"
+            alt="The Grind Hub cafe logo in Barangay Bato, Toledo City"
             className="h-11 w-11 rounded-full object-cover shadow-sm ring-1 ring-border/60"
             src="/logo.png"
           />
           <div className="leading-none">
             <p className="font-serif text-xl font-semibold tracking-tight">
               The Grind Hub
+            </p>
+            <p className="mt-1 text-xs font-medium text-muted-foreground">
+              Bato, Toledo City
             </p>
           </div>
         </a>
@@ -44,7 +47,7 @@ export function SiteHeader() {
 
         <div className="ml-auto">
           <Button asChild className="rounded-full px-6" size="sm">
-            <a href="#menu">
+            <a href="#menu" aria-label="View The Grind Hub cafe menu">
               Order Now
               <ArrowRight className="h-4 w-4" />
             </a>

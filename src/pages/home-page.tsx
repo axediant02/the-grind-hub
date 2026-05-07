@@ -3,6 +3,7 @@ import {
   Clock3,
   Coffee,
   Cookie,
+  Gamepad2,
   Gift,
   Heart,
   MapPin,
@@ -16,73 +17,91 @@ import {
   useState,
 } from 'react'
 
-import coffeeImage from '@/assets/coffee.jpg'
-import blueberryImage from '@/assets/customer-favorites-assets/blueberry-1.png'
-import brownieImage from '@/assets/customer-favorites-assets/brownies-1.png'
-import chocoImage from '@/assets/customer-favorites-assets/choco-1.png'
-import customerFlexImage from '@/assets/customer-favorites-assets/customer-flex.jpg'
-import ghCoffeeImage from '@/assets/customer-favorites-assets/gh-coffee.png'
-import giftBoxImage from '@/assets/customer-favorites-assets/gift.jpg'
-import pastryImage from '@/assets/customer-favorites-assets/pastry-1.png'
-import waffleImage from '@/assets/customer-favorites-assets/waffle.png'
+import coffeeImage from '@/assets/coffee.webp'
+import blueberryImage from '@/assets/customer-favorites-assets/blueberry-1.webp'
+import brownieImage from '@/assets/customer-favorites-assets/brownies-1.webp'
+import chocoImage from '@/assets/customer-favorites-assets/choco-1.webp'
+import customerFlexImage from '@/assets/customer-favorites-assets/customer-flex.webp'
+import ghCoffeeImage from '@/assets/customer-favorites-assets/gh-coffee.webp'
+import giftBoxImage from '@/assets/customer-favorites-assets/gift.webp'
+import pastryImage from '@/assets/customer-favorites-assets/pastry-1.webp'
+import waffleImage from '@/assets/customer-favorites-assets/waffle.webp'
 import { AppShell } from '@/components/layout/app-shell'
 import { Button } from '@/components/ui/button'
 
 const featurePills = [
   {
-    label: 'Specialty coffee',
+    label: 'Coffee in Bato',
     icon: Coffee,
   },
   {
-    label: 'Handmade bakes',
+    label: 'Fresh pastries',
     icon: Cookie,
   },
   {
-    label: 'Custom gift boxes',
-    icon: Gift,
+    label: 'Board games & tambay',
+    icon: Gamepad2,
   },
 ]
 
 const favorites = [
   {
     title: 'Iced Spanish Latte',
-    description: 'Smooth, creamy, and perfect for an afternoon pick-me-up.',
+    description:
+      'A smooth, creamy favorite for coffee breaks in Barangay Bato.',
     image: ghCoffeeImage,
+    imageAlt:
+      'Iced Spanish Latte from The Grind Hub cafe in Barangay Bato, Toledo City',
     tag: 'Best Seller',
     action: 'Order Drink',
   },
   {
     title: 'Almond Croissant',
-    description: 'Flaky, buttery layers made for coffee breaks and slow mornings.',
+    description:
+      'Flaky, buttery layers made for slow mornings and cafe dates in Toledo City.',
     image: pastryImage,
+    imageAlt:
+      'Almond croissant pastry served with coffee at The Grind Hub Toledo City',
     tag: 'Perfect with Coffee',
     action: 'Add to Order',
   },
   {
     title: 'Blueberry Cheesecake Tub',
-    description: 'Creamy cheesecake finished with a sweet berry topping.',
+    description:
+      'Creamy cheesecake finished with sweet berry topping for pickup or gifting.',
     image: blueberryImage,
+    imageAlt:
+      'Blueberry cheesecake tub gift dessert from The Grind Hub in Bato',
     tag: 'Gift Favorite',
     action: 'Reserve Tub',
   },
   {
     title: 'Chocolate Brownies',
-    description: 'Rich, dense squares with a soft center and deep cocoa flavor.',
+    description:
+      'Rich, dense brownies for merienda, coffee pairings, and office treats.',
     image: brownieImage,
+    imageAlt:
+      'Chocolate brownies from The Grind Hub coffee shop in Toledo City Cebu',
     tag: 'Sweet Treat',
     action: 'Get Brownies',
   },
   {
     title: 'Chocolate Drip Cake',
-    description: 'A celebration-ready cake with bold chocolate layers.',
+    description:
+      'A celebration-ready chocolate cake for birthdays and local custom orders.',
     image: chocoImage,
+    imageAlt:
+      'Chocolate drip cake for celebrations from The Grind Hub Bato Toledo City',
     tag: 'Celebration Pick',
     action: 'Customize Cake',
   },
   {
     title: 'Brunch Waffles',
-    description: 'Golden, fluffy waffles made for syrup, fruit, and sharing.',
+    description:
+      'Golden waffles made for brunch, merienda, dessert, and sharing.',
     image: waffleImage,
+    imageAlt:
+      'Brunch waffles at The Grind Hub cafe in Barangay Bato Toledo City',
     tag: 'Brunch Favorite',
     action: 'See Waffles',
   },
@@ -98,20 +117,20 @@ const bundles = [
   {
     label: 'Good for 1',
     title: 'Iced Coffee Break',
-    description: 'Iced latte + brownie or cookie.',
+    description: 'Iced latte + brownie or cookie for nighttime tambay.',
     action: 'Order Set',
     featured: true,
   },
   {
     label: 'Good for 1',
     title: 'Study Buddy Set',
-    description: 'Coffee + warm waffle of choice.',
+    description: 'Coffee + warm waffle of choice for study nights.',
     action: 'Order Set',
   },
   {
     label: 'Good for 2',
     title: 'Sweet Date Box',
-    description: 'Two drinks + a dessert box.',
+    description: 'Two drinks + a dessert box for cafe dates and chill nights.',
     action: 'Reserve Box',
   },
   {
@@ -142,8 +161,7 @@ const giftBoxes = [
   },
   {
     title: 'Valentine Coffee Box',
-    description:
-      'A themed drink-and-dessert set for romantic surprises.',
+    description: 'A themed drink-and-dessert set for romantic surprises.',
   },
   {
     title: 'Just for You Tray',
@@ -152,8 +170,7 @@ const giftBoxes = [
   },
   {
     title: 'Office Dessert Box',
-    description:
-      'Cookies, brownies and bottled drinks for groups and teams.',
+    description: 'Cookies, brownies and bottled drinks for groups and teams.',
   },
 ]
 
@@ -174,7 +191,7 @@ Enjoy Nespresso Crema.`,
     author: 'Louilla Delos Reyes',
   },
   {
-    quote: 'It was great. Super yummy!!!😋😍',
+    quote: 'It was great. Super yummy!',
     author: 'Sheryl Panugaling',
   },
 ]
@@ -184,9 +201,9 @@ const menuCategories = [
     id: 'hot-drinks',
     label: 'Hot Drinks',
     eyebrow: 'Warm and classic',
-    title: 'Comfort in a cup.',
+    title: 'Hot coffee in Bato, Toledo City.',
     description:
-      'Freshly brewed coffees and barista favorites for slow mornings and late work sessions.',
+      'Freshly brewed coffee and barista favorites for slow mornings, late work sessions, and quick cafe stops in Barangay Bato.',
     items: [
       { name: 'Drip Coffee', price: '60' },
       { name: 'Americano', price: '100' },
@@ -199,9 +216,9 @@ const menuCategories = [
     id: 'cold-drinks',
     label: 'Cold Drinks',
     eyebrow: 'Iced and blended',
-    title: 'Chill drinks that still taste rich.',
+    title: 'Iced coffee for warm Toledo City afternoons.',
     description:
-      'Iced coffees, frappes, and espresso-based coolers for warm afternoons and dessert pairings.',
+      'Iced coffees, frappes, and espresso-based coolers for warm afternoons, dessert pairings, and pickup orders in Toledo City.',
     items: [
       { name: 'Americano', price: '120' },
       { name: 'Nespresso', price: '140 / 165' },
@@ -216,7 +233,7 @@ const menuCategories = [
     eyebrow: 'Sweet and smooth',
     title: 'For matcha, chocolate, and tea lovers.',
     description:
-      'A softer menu lane with creamy drinks and comforting tea options for everyone.',
+      'A softer cafe menu lane with creamy drinks and comforting tea options for guests who want something beyond coffee.',
     items: [
       { name: 'Matcha Latte', price: '125 / 160' },
       { name: 'Chocolate', price: '120 / 155' },
@@ -229,13 +246,13 @@ const menuCategories = [
     id: 'bites',
     label: 'Bites & Pastries',
     eyebrow: 'Savory and sweet',
-    title: 'Little plates that go with coffee.',
+    title: 'Pastries, pasta, and desserts near Bato.',
     description:
-      'Pastries, cakes, sandwiches, and snacks for brunch, mid-day breaks, or sharing at the table.',
+      'Pastries, cakes, sandwiches, pasta, and snacks for brunch, mid-day breaks, or sharing at the table.',
     items: [
       { name: 'Pasta Alfredo / Chicken Pesto', price: '150' },
       { name: 'Chocolate Cake', price: '140' },
-      { name: 'S\'mores', price: '50' },
+      { name: "S'mores", price: '50' },
       { name: 'Brownie', price: '35' },
       { name: 'Cheesecake', price: '120' },
       { name: 'Tuna Sandwich', price: '80' },
@@ -249,7 +266,7 @@ const menuCategories = [
     eyebrow: 'Fresh off the iron',
     title: 'Simple, loaded, or extra indulgent.',
     description:
-      'A small menu built for breakfast, merienda, or dessert with customizable toppings.',
+      'Fresh waffles for breakfast, merienda, or dessert with customizable toppings.',
     items: [
       { name: 'Waffle Plain', price: '65' },
       { name: 'Waffle with Nutella', price: '85' },
@@ -341,44 +358,51 @@ export function HomePage() {
           <div className="order-2 space-y-8 lg:order-1">
             <div className="inline-flex items-center gap-2 rounded-full bg-destructive/10 px-4 py-2 text-sm font-medium text-destructive shadow-sm ring-1 ring-destructive/15">
               <span className="h-2 w-2 rounded-full bg-destructive" />
-              Freshly baked daily . Locally brewed
+              Freshly baked daily in Barangay Bato | Locally brewed in Toledo
+              City
             </div>
 
             <div className="space-y-5">
               <h1 className="max-w-2xl font-serif text-5xl font-semibold leading-[0.92] tracking-tight text-primary sm:text-6xl lg:text-[5.25rem]">
-                Coffee, pastries
+                Cafe in Bato
                 <br />
-                &amp;{' '}
-                <span className="text-accent">
-                  sweet gifts
+                &amp; <span className="text-accent">
+                  Toledo City coffee
                 </span>{' '}
                 for your daily grind.
               </h1>
               <p className="max-w-xl text-lg leading-8 text-muted-foreground">
                 Hot coffee, iced drinks, frappes, croissants, waffles, pasta,
-                cheesecake tubs, bottled cold brew, and gift-ready dessert boxes
-                made for everyday cravings and special moments.
+                cheesecake tubs, bottled cold brew, board games, and gift-ready
+                dessert boxes made for everyday cravings, chill nights, and
+                tambay moments in Barangay Bato, Toledo City.
               </p>
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Button className="rounded-full px-7" size="lg">
-                Order Now
-                <ArrowRight className="h-4 w-4" />
+              <Button asChild className="rounded-full px-7" size="lg">
+                <a href="#menu" aria-label="View The Grind Hub cafe menu">
+                  Order Now
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </Button>
               <Button
+                asChild
                 className="rounded-full border-2 border-primary/80 bg-background/70 px-7 text-primary hover:bg-primary hover:text-primary-foreground"
                 size="lg"
                 variant="outline"
               >
-                View Menu
+                <a href="#menu">View Menu</a>
               </Button>
               <Button
+                asChild
                 className="rounded-full bg-destructive px-7 text-destructive-foreground hover:bg-destructive/90"
                 size="lg"
               >
-                <Gift className="h-4 w-4" />
-                Reserve a Gift Box
+                <a href="#gift-boxes">
+                  <Gift className="h-4 w-4" />
+                  Reserve a Gift Box
+                </a>
               </Button>
             </div>
 
@@ -408,7 +432,7 @@ export function HomePage() {
                 <div className="absolute inset-3 animate-pulse rounded-[2rem] bg-muted/70" />
               ) : null}
               <img
-                alt="Coffee and baked goods from The Grind Hub"
+                alt="Coffee, pastries, desserts, and board game tambay nights at The Grind Hub cafe in Barangay Bato, Toledo City"
                 className={[
                   'h-[540px] w-full rounded-[2rem] object-cover object-center transition-opacity duration-500 sm:h-[620px] lg:h-[720px]',
                   heroImageLoaded ? 'opacity-100' : 'opacity-0',
@@ -423,7 +447,7 @@ export function HomePage() {
               <div className="absolute right-4 top-1/3 rounded-full bg-card/95 px-4 py-2 text-sm text-foreground shadow-md ring-1 ring-border/60 backdrop-blur">
                 Almond Croissant
               </div>
-              <div className="absolute left-4 bottom-24 rounded-full bg-card/95 px-4 py-2 text-sm text-foreground shadow-md ring-1 ring-border/60 backdrop-blur">
+              <div className="absolute bottom-24 left-4 rounded-full bg-card/95 px-4 py-2 text-sm text-foreground shadow-md ring-1 ring-border/60 backdrop-blur">
                 Blueberry Cheesecake Tub
               </div>
               <div className="absolute bottom-8 right-6 rounded-full bg-card/95 px-4 py-2 text-sm text-foreground shadow-md ring-1 ring-border/60 backdrop-blur">
@@ -436,20 +460,18 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal
-        id="menu"
-        className="bg-[#37231b] py-16 sm:py-20 lg:py-24"
-      >
+      <Reveal id="menu" className="bg-[#37231b] py-16 sm:py-20 lg:py-24">
         <div className="container text-center text-primary-foreground">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Menu
           </p>
           <h2 className="mx-auto mt-4 max-w-2xl font-serif text-4xl font-semibold leading-[0.95] tracking-tight sm:text-5xl lg:text-[4.5rem]">
-            Choose what you&apos;re craving today.
+            Coffee, pastries, board games, and cafe favorites in Toledo City.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-primary-foreground/75 sm:text-lg">
-            Tap a category to explore drinks and bites. Prices can be updated
-            anytime without changing the layout.
+            Explore our local menu for hot coffee, iced drinks, non-coffee
+            drinks, pastries, pasta, desserts, and waffles for dine-in, takeout,
+            study breaks, and tambay nights in Barangay Bato.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
@@ -508,15 +530,21 @@ export function HomePage() {
               </div>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button className="rounded-full bg-background px-6 text-primary hover:bg-background/90">
-                  Order This Category
-                  <ArrowRight className="h-4 w-4" />
+                <Button
+                  asChild
+                  className="rounded-full bg-background px-6 text-primary hover:bg-background/90"
+                >
+                  <a href="#visit-us">
+                    Order This Category
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
                 </Button>
                 <Button
+                  asChild
                   className="rounded-full border-2 border-white/20 bg-transparent px-6 text-primary-foreground hover:bg-white/10"
                   variant="outline"
                 >
-                  Ask for Availability
+                  <a href="#visit-us">Ask for Availability</a>
                 </Button>
               </div>
             </article>
@@ -579,20 +607,18 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal
-        id="best-sellers"
-        className="container pb-16 sm:pb-20 lg:pb-24"
-      >
+      <Reveal id="best-sellers" className="container pb-16 sm:pb-20 lg:pb-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Customer Favorites
           </p>
           <h2 className="font-serif text-4xl font-semibold leading-tight tracking-tight text-primary sm:text-5xl">
-            The treats people keep coming back for
+            Best-selling drinks and desserts in Barangay Bato
           </h2>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
             From creamy iced coffee to fresh pastries and shareable dessert
-            tubs, these are the everyday classics of The Grind.
+            tubs, these are the everyday classics local guests order from The
+            Grind Hub in Toledo City.
           </p>
         </div>
 
@@ -604,7 +630,7 @@ export function HomePage() {
             >
               <div className="relative">
                 <img
-                  alt={favorite.title}
+                  alt={favorite.imageAlt}
                   className="h-72 w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   src={favorite.image}
                 />
@@ -623,13 +649,13 @@ export function HomePage() {
                   </p>
                 </div>
 
-                <button
-                  type="button"
+                <a
+                  href="#visit-us"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-accent"
                 >
                   {favorite.action}
                   <ArrowRight className="h-4 w-4" />
-                </button>
+                </a>
               </div>
             </article>
           ))}
@@ -642,11 +668,12 @@ export function HomePage() {
             Bundles &amp; Combos
           </p>
           <h2 className="font-serif text-4xl font-semibold leading-tight tracking-tight text-primary sm:text-5xl">
-            Easy picks for every craving
+            Cafe bundles for pickup in Bato, Toledo City
           </h2>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
             Ready-made sets for breakfast, merienda, study sessions, coffee
-            dates, office treats and special occasions.
+            dates, board game nights, office treats, and special occasions near
+            Barangay Bato.
           </p>
         </div>
 
@@ -691,6 +718,7 @@ export function HomePage() {
               </div>
 
               <Button
+                asChild
                 className={[
                   'mt-8 w-fit rounded-full px-6',
                   bundle.featured
@@ -699,8 +727,10 @@ export function HomePage() {
                 ].join(' ')}
                 size="sm"
               >
-                {bundle.action}
-                <ArrowRight className="h-4 w-4" />
+                <a href="#visit-us">
+                  {bundle.action}
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </Button>
             </article>
           ))}
@@ -720,7 +750,7 @@ export function HomePage() {
                     <div className="absolute inset-4 animate-pulse rounded-[1.5rem] bg-background/70" />
                   ) : null}
                   <img
-                    alt="Gift-ready dessert box"
+                    alt="Gift-ready dessert box from The Grind Hub cafe in Barangay Bato, Toledo City"
                     className={[
                       'h-[420px] w-full object-contain object-center transition-opacity duration-500 sm:h-[520px]',
                       giftImageLoaded ? 'opacity-100' : 'opacity-0',
@@ -747,12 +777,13 @@ export function HomePage() {
                   Send Something Sweet
                 </p>
                 <h2 className="max-w-xl font-serif text-4xl font-semibold leading-[1] tracking-tight text-primary sm:text-5xl">
-                  Gift-ready boxes, made with love.
+                  Gift-ready boxes in Toledo City, made with love.
                 </h2>
                 <p className="max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
                   Make someone&apos;s day with ribboned trays, coffee-and-flower
                   sets and seasonal sweets made for birthdays, anniversaries,
-                  Valentine&apos;s Day, thank-you gifts and small celebrations.
+                  Valentine&apos;s Day, thank-you gifts and small celebrations
+                  around Barangay Bato and Toledo City.
                 </p>
               </div>
 
@@ -779,16 +810,19 @@ export function HomePage() {
               </div>
 
               <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-                <Button className="rounded-full px-6" size="lg">
-                  <Gift className="h-4 w-4" />
-                  Reserve a Gift Box
+                <Button asChild className="rounded-full px-6" size="lg">
+                  <a href="#visit-us">
+                    <Gift className="h-4 w-4" />
+                    Reserve a Gift Box
+                  </a>
                 </Button>
                 <Button
+                  asChild
                   className="rounded-full border-2 border-primary/80 bg-background/70 px-6 text-primary hover:bg-primary hover:text-primary-foreground"
                   size="lg"
                   variant="outline"
                 >
-                  Message for Custom Orders
+                  <a href="#visit-us">Message for Custom Orders</a>
                 </Button>
               </div>
             </div>
@@ -807,16 +841,20 @@ export function HomePage() {
               <span className="text-accent"> everyday grind.</span>
             </h2>
             <p className="text-base leading-8 text-muted-foreground sm:text-lg">
-              The Grind is a cozy local caf&eacute; serving coffee, breads,
-              pastries, desserts, waffles, pasta and gift-ready treats. Whether
-              you&apos;re starting your morning, taking an afternoon break,
-              studying, working or surprising someone special, we make every
-              cup and bite feel comforting, personal, and worth coming back
-              for.
+              The Grind Hub is a cozy local caf&eacute; in Barangay Bato, Toledo
+              City serving coffee, breads, pastries, desserts, waffles, pasta,
+              and gift-ready treats. It is also a relaxed tambay spot with board
+              games, warm lighting, and a night-friendly atmosphere for friends,
+              study groups, and coffee dates. Whether you&apos;re starting your
+              morning, taking an afternoon break, studying, working, or
+              surprising someone special, we make every cup and bite feel
+              comforting, personal, and worth coming back for.
             </p>
-            <Button className="rounded-full px-7" size="lg">
-              Visit Our Caf&eacute;
-              <ArrowRight className="h-4 w-4" />
+            <Button asChild className="rounded-full px-7" size="lg">
+              <a href="#visit-us">
+                Visit Our Caf&eacute;
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </Button>
           </div>
 
@@ -826,7 +864,7 @@ export function HomePage() {
                 <div className="absolute inset-0 animate-pulse rounded-[2.25rem] bg-muted/70" />
               ) : null}
               <img
-                alt="The Grind Hub cafe interior with guests seated and warm lighting"
+                alt="The Grind Hub cafe interior in Barangay Bato, Toledo City for board games, tambay nights, and warm coffee"
                 className={[
                   'h-[420px] w-full object-cover object-center transition-opacity duration-500 sm:h-[520px] lg:h-[560px]',
                   storyImageLoaded ? 'opacity-100' : 'opacity-0',
@@ -839,18 +877,15 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal
-        id="testimonials"
-        className="bg-primary py-20 sm:py-24 lg:py-28"
-      >
+      <Reveal id="testimonials" className="bg-primary py-20 sm:py-24 lg:py-28">
         <div className="container text-center text-primary-foreground">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Loved Locally
           </p>
           <h2 className="mx-auto mt-4 max-w-2xl font-serif text-4xl font-semibold leading-[0.95] tracking-tight sm:text-5xl lg:text-[4.5rem]">
-            Loved by coffee
+            Loved by Bato
             <br />
-            &amp; dessert people.
+            &amp; Toledo City tambay people.
           </h2>
 
           <div className="mt-14 grid gap-5 text-left md:grid-cols-2 xl:grid-cols-4">
@@ -875,9 +910,14 @@ export function HomePage() {
             ))}
           </div>
 
-          <Button className="mt-14 rounded-full bg-background px-7 text-primary hover:bg-background/90">
-            See more on Instagram
-            <ArrowRight className="h-4 w-4" />
+          <Button
+            asChild
+            className="mt-14 rounded-full bg-background px-7 text-primary hover:bg-background/90"
+          >
+            <a href="#visit-us">
+              Plan Your Visit
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </Button>
         </div>
       </Reveal>
@@ -888,11 +928,12 @@ export function HomePage() {
             Find Us
           </p>
           <h2 className="font-serif text-4xl font-semibold leading-tight tracking-tight text-primary sm:text-5xl">
-            Visit The Grind
+            Visit The Grind Hub in Barangay Bato
           </h2>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Drop by for a coffee, swing through for pickup, or message us to
-            reserve a gift box.
+            Drop by our cafe in Toledo City for coffee, swing through for
+            pickup, play board games with friends, tambay at night, or message
+            us to reserve a gift box.
           </p>
         </div>
 
@@ -904,14 +945,14 @@ export function HomePage() {
             <iframe
               allowFullScreen
               className={[
-                'h-[420px] w-full sm:h-[520px] lg:h-full lg:min-h-[640px] transition-opacity duration-500',
+                'h-[420px] w-full transition-opacity duration-500 sm:h-[520px] lg:h-full lg:min-h-[640px]',
                 mapLoaded ? 'opacity-100' : 'opacity-0',
               ].join(' ')}
               onLoad={() => setMapLoaded(true)}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               src={mapsEmbedUrl}
-              title="The Grind Hub location on Google Maps"
+              title="The Grind Hub cafe location in Barangay Bato, Toledo City on Google Maps"
             />
           </div>
 
@@ -928,6 +969,8 @@ export function HomePage() {
                     </p>
                     <p className="mt-1 text-base font-semibold leading-7">
                       The Grind Hub
+                      <br />
+                      Barangay Bato, Toledo City, Cebu
                     </p>
                   </div>
                 </div>
@@ -941,7 +984,8 @@ export function HomePage() {
                       Open daily
                     </p>
                     <p className="mt-1 text-base font-semibold leading-7">
-                      7:00 AM - 10:00 PM
+                      7:00 AM - 10:00 PM for coffee, dessert, board games, and
+                      night tambay
                     </p>
                   </div>
                 </div>
@@ -959,22 +1003,27 @@ export function HomePage() {
                   </a>
                 </Button>
                 <Button
+                  asChild
                   className="w-full rounded-full bg-destructive px-6 text-destructive-foreground hover:bg-destructive/90"
                   size="lg"
                 >
-                  Order for Pickup
+                  <a href="#menu">Order for Pickup</a>
                 </Button>
                 <Button
+                  asChild
                   className="w-full rounded-full border-2 border-background/30 bg-transparent px-6 text-primary-foreground hover:bg-background/10 hover:text-primary-foreground"
                   size="lg"
                   variant="outline"
                 >
-                  Message Us
+                  <a href={mapsLink} rel="noreferrer" target="_blank">
+                    Contact via Google Maps
+                  </a>
                 </Button>
               </div>
 
               <p className="pt-2 text-sm leading-6 text-primary-foreground/70">
-                For gift boxes and bulk orders, please message us in advance.
+                For gift boxes, bulk orders, group tambay, and board game
+                nights, please message us in advance.
               </p>
             </div>
           </div>
