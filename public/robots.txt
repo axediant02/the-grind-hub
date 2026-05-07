@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://the-grind-hub.vercel.app/sitemap.xml
